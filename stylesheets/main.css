@@ -93,7 +93,7 @@ img {
 
 .slides_container {
 	width:570px;
-	height:270px;
+	height:280px;
 	overflow:hidden;
 	position:relative;
 	display:none;
@@ -101,7 +101,7 @@ img {
 
 .slides_container a {
 	width:570px;
-	height:270px;
+	height:280px;
 	display:block;
 }
 
