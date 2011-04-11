@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 #
+#http://dojotoolkit.org/reference-guide/quickstart/
+
+
 import datetime
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
@@ -12,8 +15,45 @@ class ImportantDates(db.Model):
 
 #weddingdate = datetime.date(2011,12,1)
 
+def writeJQuery(self):
+    self.response.out.write("""<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.blockUI.js"></script>
+<script type="text/javascript" src="js/slides.min.jquery.js"></script>
+""")
+
+def writeJavascript(self):
+    weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
+    d = weddingdate.get().date.strftime("%A %m/%d/%Y")
+    #dasdf = "some fucking day"
+    self.response.out.write("""<script type="text/javascript">
+        $(function() 
+        {
+            $('#answer').click(function()
+            {
+                $('#answer').replaceWith("<div id=answer> %s </div>");
+            });
+        });
+        
+        </script>"""  % (d))
+    self.response.out.write("""<script type="text/javascript">  
+        $(function()
+        {
+            $("#slides").slides(
+            {
+                preload: true,
+                preloadImage: 'img/loading.gif',
+                play: 5000,
+                pause: 2500,
+                hoverPause: true
+            });
+        });
+            
+    </script>""")
+
+
+
 def writeDoctype(self):
-  self.response.out.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n""")
+    self.response.out.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n""")
 
 def writeMeta(self):
   self.response.out.write("""<meta http-equiv="content-type" content="text/xhtml; charset=utf-8"/>\r\n<meta http-equiv="cache-control" content="no-cache"/>\r\n""")
@@ -23,6 +63,8 @@ def writeHeader(self):
   self.response.out.write("""<html xmlns="http://www.w3.org/1999/xhtml">\r\n""")
   self.response.out.write("""<head>\r\n""");
   writeMeta(self)
+  writeJQuery(self)
+  writeJavascript(self)
   self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
   self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
   self.response.out.write("""</head>\r\n\r\n""");
@@ -62,17 +104,51 @@ class MainHandler(webapp.RequestHandler):
             self.response.out.write("""<div id=why>find out <strong><a href="/details">why</a></strong></div><p>""")
         
         writeTracker(self)
+
         self.response.out.write("</body>")
 
 class DetailsHandler(webapp.RequestHandler):
     def get(self):
-        writeHeader(self)
-        self.response.out.write("<div id=why>Because it's not time yet...</div>")
+        writeDoctype(self)
+        self.response.out.write("""<html xmlns="http://www.w3.org/1999/xhtml">\r\n""")
+        self.response.out.write("""<head>\r\n""");
+        writeMeta(self)
+        writeJQuery(self)
+        writeJavascript(self)
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
+        self.response.out.write("""</head>\r\n\r\n""");
+        self.response.out.write("<body>")
+        self.response.out.write("""<div id="container"><div id="example">
+                                <div id="slides">
+                                <div class="slides_container">
+                                <a href="http://www.flickr.com/photos/jliba/4665625073/" title="145.365 - Happy Bokeh Thursday! | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-1.jpg" width="570" height="270" alt="Slide 1"></a>
+                                <a href="http://www.flickr.com/photos/stephangeyer/3020487807/" title="Taxi | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-2.jpg" width="570" height="270" alt="Slide 2"></a>
+                                <a href="http://www.flickr.com/photos/childofwar/2984345060/" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-3.jpg" width="570" height="270" alt="Slide 3"></a>
+                                <a href="http://www.flickr.com/photos/b-tal/117037943/" title="We Eat Light | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-4.jpg" width="570" height="270" alt="Slide 4"></a>
+                                <a href="http://www.flickr.com/photos/bu7amd/3447416780/" title="ÒI must go down to the sea again, to the lonely sea and the sky; and all I ask is a tall ship and a star to steer her by.Ó | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-5.jpg" width="570" height="270" alt="Slide 5"></a>
+                                <a href="http://www.flickr.com/photos/streetpreacher/2078765853/" title="twelve.inch | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-6.jpg" width="570" height="270" alt="Slide 6"></a>
+                                <a href="http://www.flickr.com/photos/aftab/3152515428/" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-7.jpg" width="570" height="270" alt="Slide 7"></a>
+                                </div>
+                                <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+                                <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+                                </div>
+            <img src="img/frame.png" width="739" height="341" alt="Frame" id="frame"></div>""")
+        self.response.out.write("""\r\n\r\n<div id="content">Because it's not time yet...</div></div>""")
         self.response.out.write("</body>")
         
+class CreateHandler(webapp.RequestHandler):
+    def get(self):
+        a=ImportantDates()
+        a.name='weddingday'
+        a.date=datetime.date(2011,11,12)
+        a.put()
+        
+
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
-                                          ('/details',DetailsHandler)],
+                                          ('/details',DetailsHandler),
+                                          ('/createstuff',CreateHandler)],
                                          debug=True)
     util.run_wsgi_app(application)
 

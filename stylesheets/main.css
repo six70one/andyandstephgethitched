@@ -33,7 +33,7 @@ a:hover {
 h1, h2, h3 {
 	margin:.8em 0 .2em 0;
 	padding:0;
-	font-size:30;
+	font-size:30pt;
 }
 p {
 	margin:.4em 0 .8em 0;
@@ -42,6 +42,113 @@ p {
 img {
 	margin:10px 0 5px;
 }
+
+/* styles for jQuery Slider */
+#container {
+	width:580px;
+	padding:10px;
+	margin:0 auto;
+	position:relative;
+	z-index:0;
+}
+
+#example {
+	width:600px;
+	height:350px;
+	position:relative;
+}
+
+#ribbon {
+	position:absolute;
+	top:-3px;
+	left:-15px;
+	z-index:500;
+}
+
+#frame {
+	position:absolute;
+	z-index:0;
+	width:739px;
+	height:341px;
+	top:-3px;
+	left:-80px;
+}
+
+#slides {
+	position:absolute;
+	top:15px;
+	left:4px;
+	z-index:100;
+}
+
+#slides .next,#slides .prev {
+	position:absolute;
+	top:107px;
+	left:-39px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:101;
+}
+
+.slides_container {
+	width:570px;
+	height:270px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+}
+
+.slides_container a {
+	width:570px;
+	height:270px;
+	display:block;
+}
+
+#slides .next {
+	left:585px;
+}
+
+#content {
+	float:left;
+	width:350px;
+	font-size:1.4em;
+	margin-right:20px;
+	font-size:1.3em;
+}
+
+.pagination {
+	margin:40px auto 0;
+	width:100px;
+}
+
+.pagination li {
+	float:left;
+	margin:0 1px;
+    list-style-type:none;
+
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(/img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+    list-style-type:none;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+    list-style-type:none;
+
+}
+
+/* end slider settings */
+
 /* Header styles */
 #header {
 	clear:both;
