@@ -24,13 +24,13 @@ def writeJQuery(self):
 def writeJavascript(self):
     weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
     d = weddingdate.get().date.strftime("%A %m/%d/%Y")
-    #dasdf = "some fucking day"
     self.response.out.write("""<script type="text/javascript">
         $(function() 
         {
-            $('#answer').click(function()
+            $('#why').click(function()
             {
-                $('#answer').replaceWith("<div id=answer> %s </div>");
+                $('#answer').replaceWith("<div id=answer> it's at %s </div>");
+                $('#why').replaceWith("<div id=why>need more <strong><a href="/details">details</a>???</strong></div><p>");
             });
         });
         
@@ -101,7 +101,7 @@ class MainHandler(webapp.RequestHandler):
             self.response.out.write("<div id=answer>YUP!</div>")
         else:
             self.response.out.write("<div id=answer>nope, not yet</div><p>")
-            self.response.out.write("""<div id=why>find out <strong><a href="/details">why</a></strong></div><p>""")
+            self.response.out.write("""<div id="why"><a href="#">find out why</a>...""")
         
         writeTracker(self)
 
@@ -119,22 +119,57 @@ class DetailsHandler(webapp.RequestHandler):
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         self.response.out.write("<body>")
-        self.response.out.write("""<div id="container"><div id="example">
+        self.response.out.write("""
+                        <div id="container">
+                            <div id="example">
                                 <div id="slides">
-                                <div class="slides_container">
-                                <a href="http://www.flickr.com/photos/jliba/4665625073/" title="145.365 - Happy Bokeh Thursday! | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-1.jpg" width="570" height="300" alt="Slide 1"></a>
-                                <a href="http://www.flickr.com/photos/stephangeyer/3020487807/" title="Taxi | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-2.jpg" width="570" height="300" alt="Slide 2"></a>
-                                <a href="http://www.flickr.com/photos/childofwar/2984345060/" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-3.jpg" width="570" height="300" alt="Slide 3"></a>
-                                <a href="http://www.flickr.com/photos/b-tal/117037943/" title="We Eat Light | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-4.jpg" width="570" height="300" alt="Slide 4"></a>
-                                <a href="http://www.flickr.com/photos/bu7amd/3447416780/" title="ÒI must go down to the sea again, to the lonely sea and the sky; and all I ask is a tall ship and a star to steer her by.Ó | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-5.jpg" width="570" height="300" alt="Slide 5"></a>
-                                <a href="http://www.flickr.com/photos/streetpreacher/2078765853/" title="twelve.inch | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-6.jpg" width="570" height="300" alt="Slide 6"></a>
-                                <a href="http://www.flickr.com/photos/aftab/3152515428/" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-7.jpg" width="570" height="300" alt="Slide 7"></a>
+                                    <div class="slides_container">
+                                    <a href="#" title="Ride the Corinth Canal!" target="_blank"><img src="img/canal.jpg" width="570" height="450" alt="A n S in Corinth"></a>
+                                    <a href="#" title="FishyFishyFishy" target="_blank"><img src="img/monterey.jpg" width="570" height="450" alt="Dont get eaten by fishes"></a>
+                                    <a href="#" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-3.jpg" width="570" height="300" alt="Slide 3"></a>
+                                    <a href="http://www.flickr.com/photos/b-tal/117037943/" title="We Eat Light | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-4.jpg" width="570" height="300" alt="Slide 4"></a>
+                                    <a href="http://www.flickr.com/photos/bu7amd/3447416780/" title="ÒI must go down to the sea again, to the lonely sea and the sky; and all I ask is a tall ship and a star to steer her by.Ó | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-5.jpg" width="570" height="300" alt="Slide 5"></a>
+                                    <a href="http://www.flickr.com/photos/streetpreacher/2078765853/" title="twelve.inch | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-6.jpg" width="570" height="300" alt="Slide 6"></a>
+                                    <a href="http://www.flickr.com/photos/aftab/3152515428/" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-7.jpg" width="570" height="300" alt="Slide 7"></a>
                                 </div>
                                 <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
                                 <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
-                                </div>
-            <img src="img/frame.png" width="739" height="341" alt="Frame" id="frame"></div>""")
-        self.response.out.write("""\r\n\r\n<div id="content"><div id="why">Because it's not time yet...</div></div></div>""")
+                            </div>
+                            <img src="img/frame.png" width="739" height="450" alt="Frame" id="frame">
+                        </div>
+                    </div>""")
+        self.response.out.write("""\r\n\r\n
+            <div class="colmask rightmenu">
+                <div class="colleft">
+                    <div class="col1">
+                        <div id="ptxt">
+                            <a href="/">
+                                <img src="img/sm_frame.png" id="sm_frame">
+                                <img src="img/rose.jpg">
+                            </a>
+                            <p>Where
+                        </div>
+                    </div>
+                    <div class="col2">
+                        <div id="ptxt">
+                            <a href="/">
+                                <img src="img/sm_frame.png" id="sm_frame">
+                                <img src="img/where.jpg">
+                            </a>
+                            <p>When
+                        </div>
+                    </div>
+                    <div class="col3"> 
+                        <div id="ptxt">
+                            <a href="/">
+                                <img src="img/sm_frame.png" id="sm_frame">
+                                <img src="img/nextstop.jpg">
+                            </a>
+                            <p>Where to next??
+                        </div>
+                    </div>
+                </div>
+            </div>""")
         self.response.out.write("</body>")
         
 class CreateHandler(webapp.RequestHandler):

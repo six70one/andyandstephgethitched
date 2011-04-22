@@ -13,15 +13,24 @@ body {
 #answer {
 			font-size: 120pt;
 			font-weight: bold;
+			color: #660066;
 			position: relative;
 			padding-bottom: 0.15em;
 }
 #why, #guessed {
-			color: #666;
-			cursor: pointer;
+            text-align:center;
+			color: #777;
             font-size: 20pt;
 			top: 185pt;
 		}
+        
+#ptxt {
+            text-align:center;
+			color: #660066;
+            font-size: 20pt;
+			top: 185pt;
+}        
+
 a {
 	color:#369;
 }
@@ -43,111 +52,6 @@ img {
 	margin:10px 0 5px;
 }
 
-/* styles for jQuery Slider */
-#container {
-	width:580px;
-	padding:10px;
-	margin:0 auto;
-	position:relative;
-	z-index:0;
-}
-
-#example {
-	width:600px;
-	height:350px;
-	position:relative;
-}
-
-#ribbon {
-	position:absolute;
-	top:-3px;
-	left:-15px;
-	z-index:500;
-}
-
-#frame {
-	position:absolute;
-	z-index:0;
-	width:739px;
-	height:341px;
-	top:-3px;
-	left:-80px;
-}
-
-#slides {
-	position:absolute;
-	top:15px;
-	left:4px;
-	z-index:100;
-}
-
-#slides .next,#slides .prev {
-	position:absolute;
-	top:107px;
-	left:-39px;
-	width:24px;
-	height:43px;
-	display:block;
-	z-index:101;
-}
-
-.slides_container {
-	width:570px;
-	height:280px;
-	overflow:hidden;
-	position:relative;
-	display:none;
-}
-
-.slides_container a {
-	width:570px;
-	height:280px;
-	display:block;
-}
-
-#slides .next {
-	left:585px;
-}
-
-#content {
-	float:left;
-	width:350px;
-	font-size:1.4em;
-	margin-right:20px;
-	font-size:1.3em;
-}
-
-.pagination {
-	margin:40px auto 0;
-	width:100px;
-}
-
-.pagination li {
-	float:left;
-	margin:0 1px;
-    list-style-type:none;
-
-}
-
-.pagination li a {
-	display:block;
-	width:12px;
-	height:0;
-	padding-top:12px;
-	background-image:url(/img/pagination.png);
-	background-position:0 0;
-	float:left;
-	overflow:hidden;
-    list-style-type:none;
-}
-
-.pagination li.current a {
-	background-position:0 -12px;
-    list-style-type:none;
-
-}
-
-/* end slider settings */
 
 /* Header styles */
 #header {
@@ -239,19 +143,23 @@ img {
 }
 /* 2 Column (right menu) settings */
 .rightmenu {
-	background:#eee;		/* right column background colour */
+	background:#fff;		/* right column background colour */
 }
 .rightmenu .colleft {
-	right:25%;			/* right column width */
+	left:0%;			/* right column width */
 	background:#fff;		/* left column background colour */
 }
 .rightmenu .col1 {
-	width:71%;			/* left column content width (left column width minus left and right padding) */
-	left:27%;			/* (right column width) plus (left column left padding) */
+	width:33%;			/* left column content width (left column width minus left and right padding) */
+	left:0%;			/* (right column width) plus (left column left padding) */
 }
 .rightmenu .col2 {
-	width:25%;			/* right column content width (right column width minus left and right padding) */
-	left:31%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+	width:33%;			/* right column content width (right column width minus left and right padding) */
+	left:0%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+}
+.rightmenu .col3 {
+	width:33%;			/* right column content width (right column width minus left and right padding) */
+	left:0%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
 }
 /* Footer styles */
 #footer {
@@ -283,3 +191,118 @@ img {
 			text-align: center;
 			width: 75%;
 		}
+                
+/* styles for jQuery Slider */
+#container {
+	width:580px;
+	padding:10px;
+	margin:0 auto;
+	position:relative;
+	z-index:0;
+}
+
+#example {
+	width:600px;
+	height:450px;
+	position:relative;
+}
+
+#ribbon {
+	position:absolute;
+	top:-3px;
+	left:-15px;
+	z-index:500;
+}
+
+#frame {
+	position:absolute;
+	z-index:0;
+	width:739px;
+	height:450px;
+	top:-3px;
+	left:-80px;
+}
+
+#sm_frame {
+	position:absolute;
+	z-index:0;
+	width:427px;
+	height:285px;
+	top:-30px;
+	left:15px;
+}
+
+#slides {
+	position:absolute;
+	top:15px;
+	left:4px;
+	z-index:100;
+}
+
+#slides .next,#slides .prev {
+	position:absolute;
+	top:170px;
+	left:-39px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:101;
+}
+
+.slides_container {
+	width:570px;
+	height:280px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+}
+
+.slides_container a {
+	width:570px;
+	height:280px;
+	display:block;
+}
+
+#slides .next {
+	left:585px;
+}
+
+#content {
+	float:left;
+	width:350px;
+	font-size:1.4em;
+	margin-right:20px;
+	font-size:1.3em;
+}
+
+.pagination {
+	margin:40px auto 0;
+	width:100px;
+}
+
+.pagination li {
+	float:left;
+	margin:0 1px;
+    list-style-type:none;
+
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(/img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+    list-style-type:none;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+    list-style-type:none;
+
+}
+
+/* end slider settings */
