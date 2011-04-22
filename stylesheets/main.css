@@ -1,11 +1,11 @@
 body {
-	font-family: "helvetica neue", arial, sans-serif;
+	font-family: "helvetica neue", sans-serif, arial;
     font-size: 14pt;
     margin:0;
 	padding:0;
 	border:0;			/* This removes the border around the viewport in old versions of IE */
 	width:100%;
-	background:#fff;
+	background:#fff url(../img/background.png) repeat top center;
 	min-width:600px;    	/* Minimum width of layout - remove line if not required */
 					/* The min-width property does not work in old versions of Internet Explorer */
 	font-size:90%;
@@ -49,7 +49,7 @@ p {
 	padding:0;
 }
 img {
-	margin:10px 0 5px;
+	margin:0px 0 0px;
 }
 
 
@@ -123,7 +123,7 @@ img {
 	clear:both;
 	float:left;
 	width:100%;			/* width of whole page */
-	overflow:hidden;		/* This chops off any overhanging divs */
+	overflow:show;		/* This chops off any overhanging divs */
 }
 /* common column settings */
 .colright,
@@ -139,15 +139,15 @@ img {
 	float:left;
 	position:relative;
 	padding:0 0 1em 0;
-	overflow:hidden;
+	overflow:show;
 }
 /* 2 Column (right menu) settings */
 .rightmenu {
-	background:#fff;		/* right column background colour */
+	background:#fff  url(../img/background.png) repeat top center;		/* right column background colour */
 }
 .rightmenu .colleft {
 	left:0%;			/* right column width */
-	background:#fff;		/* left column background colour */
+	background:#fff url(../img/background.png) repeat top center;		/* left column background colour */
 }
 .rightmenu .col1 {
 	width:33%;			/* left column content width (left column width minus left and right padding) */
@@ -195,9 +195,11 @@ img {
 /* styles for jQuery Slider */
 #container {
 	width:580px;
-	padding:10px;
+	padding:0px;
 	margin:0 auto;
 	position:relative;
+    padding-bottom:10px;
+    padding-top:15px;
 	z-index:0;
 }
 
@@ -249,9 +251,13 @@ img {
 	z-index:101;
 }
 
+#next .img {
+    margin:0;
+    }
+    
 .slides_container {
 	width:570px;
-	height:280px;
+	height:382px;
 	overflow:hidden;
 	position:relative;
 	display:none;
@@ -259,8 +265,8 @@ img {
 
 .slides_container a {
 	width:570px;
-	height:280px;
-	display:block;
+	height:382px;
+	display:none;
 }
 
 #slides .next {
@@ -276,7 +282,8 @@ img {
 }
 
 .pagination {
-	margin:40px auto 0;
+	margin:25px auto 0;
+    padding:0px;
 	width:100px;
 }
 

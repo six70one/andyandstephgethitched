@@ -29,8 +29,8 @@ def writeJavascript(self):
         {
             $('#why').click(function()
             {
-                $('#answer').replaceWith("<div id=answer> it's at %s </div>");
-                $('#why').replaceWith("<div id=why>need more <strong><a href="/details">details</a>???</strong></div><p>");
+                $('#answer').replaceWith("<div id=answer> it's on %s </div>");
+                $('#why').replaceWith("<div id=why>need more <strong><a href=/details>details</a>???</strong></div><p>");
             });
         });
         
@@ -124,13 +124,13 @@ class DetailsHandler(webapp.RequestHandler):
                             <div id="example">
                                 <div id="slides">
                                     <div class="slides_container">
-                                    <a href="#" title="Ride the Corinth Canal!" target="_blank"><img src="img/canal.jpg" width="570" height="450" alt="A n S in Corinth"></a>
-                                    <a href="#" title="FishyFishyFishy" target="_blank"><img src="img/monterey.jpg" width="570" height="450" alt="Dont get eaten by fishes"></a>
-                                    <a href="#" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-3.jpg" width="570" height="300" alt="Slide 3"></a>
-                                    <a href="http://www.flickr.com/photos/b-tal/117037943/" title="We Eat Light | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-4.jpg" width="570" height="300" alt="Slide 4"></a>
-                                    <a href="http://www.flickr.com/photos/bu7amd/3447416780/" title="ÒI must go down to the sea again, to the lonely sea and the sky; and all I ask is a tall ship and a star to steer her by.Ó | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-5.jpg" width="570" height="300" alt="Slide 5"></a>
-                                    <a href="http://www.flickr.com/photos/streetpreacher/2078765853/" title="twelve.inch | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-6.jpg" width="570" height="300" alt="Slide 6"></a>
-                                    <a href="http://www.flickr.com/photos/aftab/3152515428/" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="http://slidesjs.com/examples/standard/img/slide-7.jpg" width="570" height="300" alt="Slide 7"></a>
+                                    <a href="#" title="Ride the Corinth Canal!" target="_blank"><img src="img/canal.jpg" alt="A n S in Corinth"></a>
+                                    <a href="#" title="FishyFishyFishy" target="_blank"><img src="img/monterey.jpg" alt="Dont get eaten by fishes"></a>
+                                    <a href="#" title="" target="_blank"><img src="http://farm3.static.flickr.com/2369/2078765853_cea9d40797_z.jpg?zz=1" alt="Slide 3"></a>
+                                    <a href="#" title="" target="_blank"><img src="http://farm1.static.flickr.com/19/117037943_96f1404ed8_z.jpg" alt="Slide 4"></a>
+                                    <a href="#" title="" target="_blank"><img src="http://farm6.static.flickr.com/5243/5230963362_b55904fbcd_z.jpg" alt="Slide 5"></a>
+                                    <a href="#" title="Look familiar?" target="_blank"><img src="http://www.stnorbertchurch.org/images/gallery/stnorbert0065.jpg" alt="Church"></a>
+                                    <a href="#" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="http://farm4.static.flickr.com/3250/3152515428_8e057156ba_z.jpg" alt="Slide 7"></a>
                                 </div>
                                 <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
                                 <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
@@ -161,10 +161,12 @@ class DetailsHandler(webapp.RequestHandler):
                     </div>
                     <div class="col3"> 
                         <div id="ptxt">
+                            <div class="slides">
                             <a href="/">
                                 <img src="img/sm_frame.png" id="sm_frame">
                                 <img src="img/nextstop.jpg">
                             </a>
+                            </div>
                             <p>Where to next??
                         </div>
                     </div>
