@@ -119,7 +119,7 @@ class DetailsHandler(webapp.RequestHandler):
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         self.response.out.write("<body>")
-        self.response.out.write("""
+        self.response.out.write("""<p><p><p><p>
                         <div id="container">
                             <div id="example">
                                 <div id="slides">
@@ -145,29 +145,30 @@ class DetailsHandler(webapp.RequestHandler):
                         <div id="ptxt">
                             <a href="/">
                                 <img src="img/sm_frame.png" id="sm_frame">
-                                <img src="img/rose.jpg">
+                                <img src="img/rose.jpg" id="sm_framed_pic">
                             </a>
-                            <p>Where
+                            <div id="underframe">Where</div>
                         </div>
                     </div>
                     <div class="col2">
                         <div id="ptxt">
                             <a href="/">
                                 <img src="img/sm_frame.png" id="sm_frame">
-                                <img src="img/where.jpg">
+                                <img src="img/where.jpg" id="sm_framed_pic">
                             </a>
-                            <p>When
+                            <div id="underframe">When</div>
                         </div>
                     </div>
                     <div class="col3"> 
                         <div id="ptxt">
                             <div class="slides">
                             <a href="/">
+                                <img src="img/nextstop.jpg" id="sm_framed_pic">
                                 <img src="img/sm_frame.png" id="sm_frame">
-                                <img src="img/nextstop.jpg">
+                                
                             </a>
                             </div>
-                            <p>Where to next??
+                            <div id="underframe">Where to next??</div>
                         </div>
                     </div>
                 </div>
@@ -178,8 +179,9 @@ class CreateHandler(webapp.RequestHandler):
     def get(self):
         a=ImportantDates()
         a.name='weddingday'
-        a.date=datetime.date(2011,11,12)
+        a.date=datetime.date(2011,10,28)
         a.put()
+        self.response.out.write("OK")
         
 
 def main():

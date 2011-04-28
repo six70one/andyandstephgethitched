@@ -31,6 +31,10 @@ body {
 			top: 185pt;
 }        
 
+#underframe {
+    margin-top:240px;
+    }
+
 a {
 	color:#369;
 }
@@ -232,6 +236,15 @@ img {
 	height:285px;
 	top:-30px;
 	left:15px;
+}
+
+#sm_framed_pic {
+	position:absolute;
+	z-index:0;
+	width:338px;
+	height:225px;
+	top:1px;
+	left:59px;
 }
 
 #slides {
