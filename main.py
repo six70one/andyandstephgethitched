@@ -25,11 +25,17 @@ def writeJavascript(self):
     weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
     d = weddingdate.get().date.strftime("%A %m/%d/%Y")
     self.response.out.write("""<script type="text/javascript">
+        $(document).ready(function() 
+        {
+            $("#why:hidden:first").fadeIn(6000);
+        });
+        </script>""")
+    self.response.out.write("""<script type="text/javascript">        
         $(function() 
         {
-            $('#why').click(function()
+            $('#wrapper').click(function()
             {
-                $('#answer').replaceWith("<div id=answer> it's on %s </div>");
+                $('#answer').replaceWith("<div id=answer>because the wedding's on %s!!!</div>");
                 $('#why').replaceWith("<div id=why>need more <strong><a href=/details>details</a>???</strong></div><p>");
             });
         });
@@ -101,7 +107,7 @@ class MainHandler(webapp.RequestHandler):
             self.response.out.write("<div id=answer>YUP!</div>")
         else:
             self.response.out.write("<div id=answer>nope, not yet</div><p>")
-            self.response.out.write("""<div id="why"><a href="#">find out why</a>...""")
+            self.response.out.write("""<div id="why" style="display:none"><a href="#">find out why</a>...""")
         
         writeTracker(self)
 
@@ -119,7 +125,7 @@ class DetailsHandler(webapp.RequestHandler):
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         self.response.out.write("<body>")
-        self.response.out.write("""<p><p><p><p>
+        self.response.out.write("""<p><p><p><div id="ptxt">We're Getting Married!!</div>
                         <div id="container">
                             <div id="example">
                                 <div id="slides">
@@ -147,7 +153,7 @@ class DetailsHandler(webapp.RequestHandler):
                                 <img src="img/sm_frame.png" id="sm_frame">
                                 <img src="img/rose.jpg" id="sm_framed_pic">
                             </a>
-                            <div id="underframe">Where</div>
+                            <div id="underframe">All the Where's 'n When's</div>
                         </div>
                     </div>
                     <div class="col2">
@@ -156,7 +162,7 @@ class DetailsHandler(webapp.RequestHandler):
                                 <img src="img/sm_frame.png" id="sm_frame">
                                 <img src="img/where.jpg" id="sm_framed_pic">
                             </a>
-                            <div id="underframe">When</div>
+                            <div id="underframe">The other wedding-y stuff</div>
                         </div>
                     </div>
                     <div class="col3"> 
@@ -168,13 +174,16 @@ class DetailsHandler(webapp.RequestHandler):
                                 
                             </a>
                             </div>
-                            <div id="underframe">Where to next??</div>
+                            <div id="underframe">It's Saturday the 29th, now what?!??</div>
                         </div>
                     </div>
                 </div>
-            </div>""")
+            </div>
+            <div id="footer"><p>a Studio 70one production</p></div>""")
         self.response.out.write("</body>")
-        
+
+## TODO: change the sm_frame and sm_framed_pic to be the same overall size so that they line up.  or just add the frame to the static image...
+
 class CreateHandler(webapp.RequestHandler):
     def get(self):
         a=ImportantDates()
