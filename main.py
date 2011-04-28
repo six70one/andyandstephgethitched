@@ -35,7 +35,7 @@ def writeJavascript(self):
         {
             $('#wrapper').click(function()
             {
-                $('#answer').replaceWith("<div id=answer>because the wedding's on %s!!!</div>");
+                $('#answer').replaceWith("<div id=date>because the wedding's on %s!!!</div>");
                 $('#why').replaceWith("<div id=why>need more <strong><a href=/details>details</a>???</strong></div><p>");
             });
         });

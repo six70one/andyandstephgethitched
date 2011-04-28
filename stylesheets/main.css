@@ -13,10 +13,19 @@ body {
 #answer {
 			font-size: 120pt;
 			font-weight: bold;
+			color: #000;
+			position: relative;
+			padding-bottom: 0.15em;
+}
+
+#date {
+			font-size: 80pt;
+			font-weight: bold;
 			color: #660066;
 			position: relative;
 			padding-bottom: 0.15em;
 }
+
 #why, #guessed {
             text-align:center;
 			color: #777;
