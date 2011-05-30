@@ -121,10 +121,11 @@ class DetailsHandler(webapp.RequestHandler):
         writeMeta(self)
         writeJQuery(self)
         writeJavascript(self)
-        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        #self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
-        self.response.out.write("<body>")
+        self.response.out.write("""<body>""")
         self.response.out.write("""<p><p><p><div id="ptxt">We're Getting Married!!</div>
                         <div id="container">
                             <div id="example">
@@ -150,31 +151,26 @@ class DetailsHandler(webapp.RequestHandler):
                     <div class="col1">
                         <div id="ptxt">
                             <a href="/">
-                                <img src="img/sm_frame.png" id="sm_frame">
-                                <img src="img/rose.jpg" id="sm_framed_pic">
+                                <img src="img/rose.png">
                             </a>
-                            <div id="underframe">All the Where's 'n When's</div>
+                            <br>All the Where's 'n When's
                         </div>
                     </div>
                     <div class="col2">
                         <div id="ptxt">
                             <a href="/">
-                                <img src="img/sm_frame.png" id="sm_frame">
-                                <img src="img/where.jpg" id="sm_framed_pic">
+                                <img src="img/where.png">
                             </a>
-                            <div id="underframe">The other wedding-y stuff</div>
+                            <br>The other wedding-y stuff
                         </div>
                     </div>
                     <div class="col3"> 
                         <div id="ptxt">
                             <div class="slides">
                             <a href="/">
-                                <img src="img/nextstop.jpg" id="sm_framed_pic">
-                                <img src="img/sm_frame.png" id="sm_frame">
-                                
-                            </a>
+                                <img src="img/nextstop.png"></a><br>
+                                It's Saturday the 29th, now what?!??
                             </div>
-                            <div id="underframe">It's Saturday the 29th, now what?!??</div>
                         </div>
                     </div>
                 </div>
