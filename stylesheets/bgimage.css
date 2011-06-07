@@ -1,5 +1,5 @@
 body {
-	font-family: "helvetica neue", sans-serif, arial;
+    font-family: "helvetica neue", sans-serif, arial; 
     font-size: 14pt;
     margin:0;
 	padding:0;
@@ -36,20 +36,28 @@ body {
 #ptxt {
             text-align:center;
 			color: #660066;
-            font-size: 20pt;
+            font-size: 48pt;
+            font-family: Luna Bar;
 			top: 185pt;
 }        
+
+#utxt {
+            text-align:center;
+			color: #fff;
+            font-size: 20pt;
+            top: 185pt;
+}        
+
 
 #underframe {
     margin-top:240px;
     }
 
 a {
-	color:#369;
+	color:#6699CC;
 }
 a:hover {
-	color:#fff;
-	background:#369;
+	color:#369;
 	text-decoration:none;
 }
 h1, h2, h3 {

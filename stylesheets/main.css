@@ -1,10 +1,11 @@
 body {
-	font-family: "helvetica neue", sans-serif, arial;
+    font-family: "helvetica neue", sans-serif, arial;
     font-size: 14pt;
     margin:0;
 	padding:0;
 	border:0;			/* This removes the border around the viewport in old versions of IE */
 	width:100%;
+	background:#fff url(../img/background.png) repeat top center;
 	min-width:600px;    	/* Minimum width of layout - remove line if not required */
 					/* The min-width property does not work in old versions of Internet Explorer */
 	font-size:90%;
@@ -35,10 +36,16 @@ body {
 #ptxt {
             text-align:center;
 			color: #660066;
-            font-size: 20pt;
+            font-size: 48pt;
+            font-family: Luna Bar;
 			top: 185pt;
 }        
-
+#utxt {
+            text-align:center;
+			color: #550055;
+            font-size: 20pt;
+            top: 185pt;
+}  
 #underframe {
     margin-top:240px;
     }
@@ -47,8 +54,7 @@ a {
 	color:#369;
 }
 a:hover {
-	color:#fff;
-	background:#369;
+	color:#6699cc;
 	text-decoration:none;
 }
 h1, h2, h3 {
@@ -109,11 +115,11 @@ img {
 }
 #header ul li a:hover {
 	background:#369;
-	color:#fff;
+	color:#6699cc;
 }
 #header ul li a.active,
 #header ul li a.active:hover {
-	color:#fff;
+	color:#6699cc;
 	background:#000;
 	font-weight:bold;
 }
@@ -155,12 +161,11 @@ img {
 }
 /* 2 Column (right menu) settings */
 .rightmenu {
-/*	background:#fff  url(../img/background.png) repeat top center;*/		/* right column background colour */
+	background:#fff  url(../img/background.png) repeat top center;		/* right column background colour */
 }
 .rightmenu .colleft {
 	left:0%;			/* right column width */
-/*	background:#fff url(../img/background.png) repeat top center; */
-		/* left column background colour */
+	background:#fff url(../img/background.png) repeat top center;		/* left column background colour */
 }
 .rightmenu .col1 {
 	width:33%;			/* left column content width (left column width minus left and right padding) */

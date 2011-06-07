@@ -4,10 +4,20 @@
 
 
 import datetime
+import os
+
+from datetime import date
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
-
+from google.appengine.ext.webapp import template
 from google.appengine.ext import db
+
+def isIE(self):
+    ua=self.request.headers.get("User-Agent")
+    if "MSIE" in ua:
+        return True
+    else:
+        return False
 
 class ImportantDates(db.Model):
   name = db.StringProperty(multiline=False)
@@ -16,7 +26,7 @@ class ImportantDates(db.Model):
 #weddingdate = datetime.date(2011,12,1)
 
 def writeJQuery(self):
-    self.response.out.write("""<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+    self.response.out.write("""<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.blockUI.js"></script>
 <script type="text/javascript" src="js/slides.min.jquery.js"></script>
 """)
@@ -59,14 +69,14 @@ def writeJavascript(self):
 
 
 def writeDoctype(self):
-    self.response.out.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n""")
+#    self.response.out.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n""")
+    self.response.out.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">\r\n""")
 
 def writeMeta(self):
-  self.response.out.write("""<meta http-equiv="content-type" content="text/xhtml; charset=utf-8"/>\r\n<meta http-equiv="cache-control" content="no-cache"/>\r\n""")
+  self.response.out.write("""<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>\r\n<meta http-equiv="cache-control" content="no-cache"/>\r\n""")
 
 def writeHeader(self):
   writeDoctype(self)
-  self.response.out.write("""<html xmlns="http://www.w3.org/1999/xhtml">\r\n""")
   self.response.out.write("""<head>\r\n""");
   writeMeta(self)
   writeJQuery(self)
@@ -94,12 +104,29 @@ def writeTracker(self):
 
 </script>""")
 
+def writeNav(self):
+    weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
+    dow =  datetime.datetime.today().strftime("%A")
+    diff = weddingdate.get().date-datetime.date.today()
+    
+    if diff.days > 0:
+        aremarried = False
+        nDays = diff.days
+    else:
+        aremarried = True
+        nDays = diff.days*-1
+    
+    template_values = {
+        'dayoftheweek': dow,
+        'days': nDays,
+        'happened' : aremarried,
+    }
+
+    path = os.path.join(os.path.dirname(__file__), 'nav.html')
+    self.response.out.write(template.render(path, template_values))
+
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        #a  = ImportantDates()
-        #a.name='weddingday'
-        #a.date=datetime.date(2011,12,1)
-        #a.put()
         writeHeader(self)
         weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
         
@@ -116,69 +143,33 @@ class MainHandler(webapp.RequestHandler):
 class DetailsHandler(webapp.RequestHandler):
     def get(self):
         writeDoctype(self)
-        self.response.out.write("""<html xmlns="http://www.w3.org/1999/xhtml">\r\n""")
         self.response.out.write("""<head>\r\n""");
         writeMeta(self)
         writeJQuery(self)
         writeJavascript(self)
-        #self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
-        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
+        if isIE(self):
+            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        else:
+            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
-        self.response.out.write("""<body>""")
-        self.response.out.write("""<p><p><p><div id="ptxt">We're Getting Married!!</div>
-                        <div id="container">
-                            <div id="example">
-                                <div id="slides">
-                                    <div class="slides_container">
-                                    <a href="#" title="Ride the Corinth Canal!" target="_blank"><img src="img/canal.jpg" alt="A n S in Corinth"></a>
-                                    <a href="#" title="FishyFishyFishy" target="_blank"><img src="img/monterey.jpg" alt="Dont get eaten by fishes"></a>
-                                    <a href="#" title="" target="_blank"><img src="http://farm3.static.flickr.com/2369/2078765853_cea9d40797_z.jpg?zz=1" alt="Slide 3"></a>
-                                    <a href="#" title="" target="_blank"><img src="http://farm1.static.flickr.com/19/117037943_96f1404ed8_z.jpg" alt="Slide 4"></a>
-                                    <a href="#" title="" target="_blank"><img src="http://farm6.static.flickr.com/5243/5230963362_b55904fbcd_z.jpg" alt="Slide 5"></a>
-                                    <a href="#" title="Look familiar?" target="_blank"><img src="http://www.stnorbertchurch.org/images/gallery/stnorbert0065.jpg" alt="Church"></a>
-                                    <a href="#" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="http://farm4.static.flickr.com/3250/3152515428_8e057156ba_z.jpg" alt="Slide 7"></a>
-                                </div>
-                                <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-                                <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
-                            </div>
-                            <img src="img/frame.png" width="739" height="450" alt="Frame" id="frame">
-                        </div>
-                    </div>""")
-        self.response.out.write("""\r\n\r\n
-            <div class="colmask rightmenu">
-                <div class="colleft">
-                    <div class="col1">
-                        <div id="ptxt">
-                            <a href="/">
-                                <img src="img/rose.png">
-                            </a>
-                            <br>All the Where's 'n When's
-                        </div>
-                    </div>
-                    <div class="col2">
-                        <div id="ptxt">
-                            <a href="/">
-                                <img src="img/where.png">
-                            </a>
-                            <br>The other wedding-y stuff
-                        </div>
-                    </div>
-                    <div class="col3"> 
-                        <div id="ptxt">
-                            <div class="slides">
-                            <a href="/">
-                                <img src="img/nextstop.png"></a><br>
-                                It's Saturday the 29th, now what?!??
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="footer"><p>a Studio 70one production</p></div>""")
-        self.response.out.write("</body>")
+        writeNav(self)
+        template_values = {}
+        
+        path = os.path.join(os.path.dirname(__file__), 'details.html')
+        self.response.out.write(template.render(path, template_values))
 
 ## TODO: change the sm_frame and sm_framed_pic to be the same overall size so that they line up.  or just add the frame to the static image...
+
+class UserAgentHandler(webapp.RequestHandler):
+    def get(self):
+        ua=self.request.headers.get("User-Agent")
+        if "MSIE" in ua:
+            self.response.out.write("IE\n")
+        else:
+            self.response.out.write("not IE\n")
+        self.response.out.write(ua)
 
 class CreateHandler(webapp.RequestHandler):
     def get(self):
@@ -192,7 +183,8 @@ class CreateHandler(webapp.RequestHandler):
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
                                           ('/details',DetailsHandler),
-                                          ('/createstuff',CreateHandler)],
+                                          ('/createstuff',CreateHandler),
+                                          ('/useragent', UserAgentHandler)],
                                          debug=True)
     util.run_wsgi_app(application)
 

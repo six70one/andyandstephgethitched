@@ -1,0 +1,50 @@
+
+/* nav */
+
+div.nav {
+  text-align: right;
+  padding: 10px;
+  margin: 0px 0 20px 0;
+}
+
+div.nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+div.nav ul li {
+  list-style-type: none;
+  display: inline;
+  margin: 0;
+  padding: 0 10px 0;
+  font-size: 14px;
+  font-family: "minion-pro-1","minion-pro-2","Times New Roman",Georgia,serif;
+}
+
+div.nav ul li.date {
+	float: left;
+	padding-top: 4px;
+	color: #999;
+}
+
+body.index div.nav ul li.home {
+  display: none;
+}
+
+body.index div.nav ul li.logo {
+  display: none;
+  padding: 0;
+}
+
+div.nav ul li img.logo {
+  margin-top: -5px;
+}
+
+div.nav ul li a {
+  text-decoration: none;
+color: #69C;
+}
+
+div.nav ul li a:hover {
+color: #369;
+}
