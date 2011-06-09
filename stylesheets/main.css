@@ -5,10 +5,11 @@ body {
 	padding:0;
 	border:0;			/* This removes the border around the viewport in old versions of IE */
 	width:100%;
-	background:#fff url(../img/background.png) repeat top center;
+/*	background:#fff url(../img/background.png) repeat top center;*/
 	min-width:600px;    	/* Minimum width of layout - remove line if not required */
 					/* The min-width property does not work in old versions of Internet Explorer */
 	font-size:90%;
+    text-align:center;
 }
 #answer {
 			font-size: 120pt;
@@ -36,10 +37,19 @@ body {
 #ptxt {
             text-align:center;
 			color: #660066;
-            font-size: 48pt;
-            font-family: Luna Bar;
-			top: 185pt;
+            font-size: 20pt;
+            top: 185pt;
 }        
+
+#utxt a {
+	color:#660066;
+	text-decoration:none;
+}
+#utxt a:hover {
+	color:#990099;
+	text-decoration:none;
+}
+
 #utxt {
             text-align:center;
 			color: #550055;
@@ -52,6 +62,7 @@ body {
 
 a {
 	color:#369;
+	text-decoration:none;
 }
 a:hover {
 	color:#6699cc;
@@ -343,3 +354,57 @@ img {
 }
 
 /* end slider settings */
+div.placescontainer{
+  margin: 0 auto 20px;
+  width: 840px;
+  padding: 0;
+  text-align: center;
+}
+
+div.placescollection {
+  padding: 0;
+  width: 100%;
+  margin-left: 20px;
+  float: left;
+  text-align: left;
+  position: relative;
+  }
+
+div.places{
+  display: block;
+  width: 250px;
+  height: 175px;
+  text-align: left;
+  float: left;
+  margin: 0 30px 20px 0;
+  text-decoration: none;
+  color: #606;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.3em;
+}
+
+div.places a img{
+  padding: 1px;
+  border: 5px solid #000;
+  margin-bottom: 10px;
+}
+
+div.places span{
+  color: #c0c;
+  font-weight: normal;
+  font-size: 14px;
+  margin-bottom: 10px;
+  }
+
+div.places a:hover{
+  color: #6699cc;
+}
+
+div.places a:hover span{
+  color: #66699cc;
+}
+
+div.places a:hover img{
+  border: 5px solid #999;
+}

@@ -7,6 +7,7 @@ import datetime
 import os
 
 from datetime import date
+from datetime import timedelta
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 from google.appengine.ext.webapp import template
@@ -31,6 +32,22 @@ def writeJQuery(self):
 <script type="text/javascript" src="js/slides.min.jquery.js"></script>
 """)
 
+def writeSlidePlayerScript(self):
+    self.response.out.write("""
+<script type="text/javascript">  
+    $(function()
+    {
+        $("#slides").slides(
+        {
+            preload: true,
+            preloadImage: 'img/loading.gif',
+            play: 5000,
+            pause: 2500,
+            hoverPause: true
+        });
+    });
+</script>""")
+
 def writeJavascript(self):
     weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
     d = weddingdate.get().date.strftime("%A %m/%d/%Y")
@@ -51,20 +68,7 @@ def writeJavascript(self):
         });
         
         </script>"""  % (d))
-    self.response.out.write("""<script type="text/javascript">  
-        $(function()
-        {
-            $("#slides").slides(
-            {
-                preload: true,
-                preloadImage: 'img/loading.gif',
-                play: 5000,
-                pause: 2500,
-                hoverPause: true
-            });
-        });
-            
-    </script>""")
+    
 
 
 
@@ -106,8 +110,10 @@ def writeTracker(self):
 
 def writeNav(self):
     weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
-    dow =  datetime.datetime.today().strftime("%A")
-    diff = weddingdate.get().date-datetime.date.today()
+    nw = date.fromordinal((datetime.datetime.now()-timedelta(hours=7)).toordinal())
+    
+    dow = nw.strftime("%A")
+    diff = weddingdate.get().date-nw
     
     if diff.days > 0:
         aremarried = False
@@ -146,7 +152,7 @@ class DetailsHandler(webapp.RequestHandler):
         self.response.out.write("""<head>\r\n""");
         writeMeta(self)
         writeJQuery(self)
-        writeJavascript(self)
+        writeSlidePlayerScript(self)
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
         if isIE(self):
             self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
@@ -161,6 +167,66 @@ class DetailsHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 ## TODO: change the sm_frame and sm_framed_pic to be the same overall size so that they line up.  or just add the frame to the static image...
+
+class WherewhenHandler(webapp.RequestHandler):
+    def get(self):
+        writeDoctype(self)
+        self.response.out.write("""<head>\r\n""");
+        writeMeta(self)
+        writeJQuery(self)
+        writeSlidePlayerScript(self)
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
+        if isIE(self):
+            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        else:
+            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
+        self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
+        self.response.out.write("""</head>\r\n\r\n""");
+        writeNav(self)
+        template_values = {}
+        
+        path = os.path.join(os.path.dirname(__file__), 'wherewhen.html')
+        self.response.out.write(template.render(path, template_values))
+
+class FunStuffHandler(webapp.RequestHandler):
+    def get(self):
+        writeDoctype(self)
+        self.response.out.write("""<head>\r\n""");
+        writeMeta(self)
+        writeJQuery(self)
+        writeSlidePlayerScript(self)
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
+        if isIE(self):
+            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        else:
+            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
+        self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
+        self.response.out.write("""</head>\r\n\r\n""");
+        writeNav(self)
+        template_values = {}
+        
+        path = os.path.join(os.path.dirname(__file__), 'funstuff.html')
+        self.response.out.write(template.render(path, template_values))
+
+class OtherStuffHandler(webapp.RequestHandler):
+    def get(self):
+        writeDoctype(self)
+        self.response.out.write("""<head>\r\n""");
+        writeMeta(self)
+        writeJQuery(self)
+        writeSlidePlayerScript(self)
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
+        if isIE(self):
+            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        else:
+            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
+        self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
+        self.response.out.write("""</head>\r\n\r\n""");
+        writeNav(self)
+        template_values = {}
+        
+        path = os.path.join(os.path.dirname(__file__), 'stuff.html')
+        self.response.out.write(template.render(path, template_values))
 
 class UserAgentHandler(webapp.RequestHandler):
     def get(self):
@@ -183,6 +249,9 @@ class CreateHandler(webapp.RequestHandler):
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
                                           ('/details',DetailsHandler),
+                                          ('/wherewhen',WherewhenHandler),
+                                          ('/fun',FunStuffHandler),
+                                          ('/stuff',OtherStuffHandler),
                                           ('/createstuff',CreateHandler),
                                           ('/useragent', UserAgentHandler)],
                                          debug=True)

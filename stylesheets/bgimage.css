@@ -43,11 +43,19 @@ body {
 
 #utxt {
             text-align:center;
-			color: #fff;
+			color: #ccc;
             font-size: 20pt;
             top: 185pt;
 }        
 
+#utxt a {
+	color:#ccc;
+	text-decoration:none;
+}
+#utxt a:hover {
+	color:#fff;
+/*	text-decoration:none;*/
+}
 
 #underframe {
     margin-top:240px;
@@ -55,10 +63,11 @@ body {
 
 a {
 	color:#6699CC;
+	text-decoration:none;
 }
 a:hover {
 	color:#369;
-	text-decoration:none;
+/*	text-decoration:none;*/
 }
 h1, h2, h3 {
 	margin:.8em 0 .2em 0;
@@ -144,7 +153,6 @@ img {
 	clear:both;
 	float:left;
 	width:100%;			/* width of whole page */
-	overflow:show;		/* This chops off any overhanging divs */
 }
 /* common column settings */
 .colright,
@@ -160,7 +168,6 @@ img {
 	float:left;
 	position:relative;
 	padding:0 0 1em 0;
-	overflow:show;
 }
 /* 2 Column (right menu) settings */
 .rightmenu {
@@ -347,3 +354,56 @@ img {
 }
 
 /* end slider settings */
+div.placescontainer{
+  margin: 0 auto 20px;
+  width: 830px;
+  padding: 0;
+  text-align: center;
+}
+div.placescollection {
+  padding: 0;
+  width: 100%;
+  margin-left: 20px;
+  float: left;
+  text-align: left;
+  position: relative;
+  }
+
+div.places {
+  display: block;
+  width: 250px;
+  height: 175px;
+  text-align: left;
+  float: left;
+  margin: 0 20px 20px 0;
+  text-decoration: none;
+  color: #606;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.3em;
+}
+
+div.places a img {
+  padding: 1px;
+  border: 5px solid #000;
+  margin-bottom: 10px;
+}
+
+div.places span {
+  color: #fff;
+  font-weight: normal;
+  font-size: 14px;
+  margin-bottom: 10px;
+  }
+
+div.places a:hover{
+  color: #6699cc;
+}
+
+div.places a:hover span{
+  color: #6699cc;
+}
+
+div.places a:hover img{
+  border: 5px solid #999;
+}
