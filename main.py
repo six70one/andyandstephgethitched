@@ -128,7 +128,7 @@ def writeNav(self):
         'happened' : aremarried,
     }
 
-    path = os.path.join(os.path.dirname(__file__), 'nav.html')
+    path = os.path.join(os.path.dirname(__file__), 'static/templates/nav.html')
     self.response.out.write(template.render(path, template_values))
 
 class MainHandler(webapp.RequestHandler):
@@ -163,7 +163,7 @@ class DetailsHandler(webapp.RequestHandler):
         writeNav(self)
         template_values = {}
         
-        path = os.path.join(os.path.dirname(__file__), 'details.html')
+        path = os.path.join(os.path.dirname(__file__), 'static/templates/details.html')
         self.response.out.write(template.render(path, template_values))
 
 ## TODO: change the sm_frame and sm_framed_pic to be the same overall size so that they line up.  or just add the frame to the static image...
@@ -185,7 +185,7 @@ class WherewhenHandler(webapp.RequestHandler):
         writeNav(self)
         template_values = {}
         
-        path = os.path.join(os.path.dirname(__file__), 'wherewhen.html')
+        path = os.path.join(os.path.dirname(__file__), 'static/templates/wherewhen.html')
         self.response.out.write(template.render(path, template_values))
 
 class FunStuffHandler(webapp.RequestHandler):
@@ -205,7 +205,7 @@ class FunStuffHandler(webapp.RequestHandler):
         writeNav(self)
         template_values = {}
         
-        path = os.path.join(os.path.dirname(__file__), 'funstuff.html')
+        path = os.path.join(os.path.dirname(__file__), 'static/templates/funstuff.html')
         self.response.out.write(template.render(path, template_values))
 
 class OtherStuffHandler(webapp.RequestHandler):
@@ -225,7 +225,7 @@ class OtherStuffHandler(webapp.RequestHandler):
         writeNav(self)
         template_values = {}
         
-        path = os.path.join(os.path.dirname(__file__), 'stuff.html')
+        path = os.path.join(os.path.dirname(__file__), 'static/templates/stuff.html')
         self.response.out.write(template.render(path, template_values))
 
 class UserAgentHandler(webapp.RequestHandler):
@@ -245,6 +245,10 @@ class CreateHandler(webapp.RequestHandler):
         a.put()
         self.response.out.write("OK")
         
+class RobotHandler(webapp.RequestHandler):
+    def get(self):
+        self.response.out.write("""User-agent: *<br>""")
+        self.response.out.write("""Disallow: """)
 
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
@@ -253,7 +257,8 @@ def main():
                                           ('/fun',FunStuffHandler),
                                           ('/stuff',OtherStuffHandler),
                                           ('/createstuff',CreateHandler),
-                                          ('/useragent', UserAgentHandler)],
+                                          ('/useragent', UserAgentHandler),
+                                          ('/robots.txt',RobotHandler)],
                                          debug=True)
     util.run_wsgi_app(application)
 
