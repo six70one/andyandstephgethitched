@@ -1,11 +1,50 @@
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+    </script>
+<script type="text/javascript">
+    function initialize() 
+    {
+        var latlng = new google.maps.LatLng(33.737474,-117.805023);
+        var myOptions = {
+            zoom: 12,
+            center: latlng,
+            sensor: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"),
+                                      myOptions);
+        var geocoder = new google.maps.Geocoder();
+
+        var sfimg = 'http://google-maps-icons.googlecode.com/files/market-farm.png';
+        var sflatlon = new google.maps.LatLng(33.648053,-117.794907);
+        var sfmarker = new google.maps.Marker({map: map, position: sflatlon, icon: sfimg });
+        
+        var chimg = 'http://google-maps-icons.googlecode.com/files/chapel.png';
+        var chlatlon = new google.maps.LatLng(33.815323,-117.849796);
+        var chmarker = new google.maps.Marker({map: map, position: chlatlon, icon: chimg });
+
+        var himg = 'http://google-maps-icons.googlecode.com/files/resort.png';
+        var hlatlon = new google.maps.LatLng(33.709202,-117.85319);
+        var hmarker = new google.maps.Marker({map: map, position: hlatlon, icon: himg });
+    }
+    </script>
+
 <div align="center">
     <img src="img/whrwhn.png">
 </div>
 <div class="colmask rightmenu">
     <div class="colleft">
         <div class="col1" style="left:0; width: 66%;">
-            <div id="utxt">
+            <div id="map" style="height: 900px;position: relative; padding-left: 0px; margin-left: 50px; margin-right: 50px;">
+                <script type="text/javascript" language="JavaScript">
+                    initialize();
+                    </script>
+                <!--
+                 700x750
                 <img src="img/map3.jpg">
+                 
+                <img src="http://maps.google.com/maps/api/staticmap?center=33.737474,-117.805023&zoom=12&size=700x900&markers=icon:http://google-maps-icons.googlecode.com/files/market-farm.png%7C11+Strawberry+Farms+Road,Irvine,CA&markers=icon:http://google-maps-icons.googlecode.com/files/chapel.png%7C300+Taft+Ave,Orange,CA&sensor=false">
+                 -->
             </div>
         </div>
         <div class="col3"> 
@@ -16,7 +55,7 @@
                     
                     St Norbert Parish - 10/28 3:30 PM<br>
                     <span>
-                        ### Taft Ave<br>Orange, CA<br><br>
+                        300 Taft Ave<br>Orange, CA<br><br>
                     </span>
                     
                     <a href="http://www.strawberryfarmsgolf.com">
@@ -27,15 +66,17 @@
                         11 Strawberry Farms Rd.<br>Irvine, CA<br><br>
                     </span>
                     
-                    <a href="http://www.hilton.com">
+                    <a href="http://embassysuites.hilton.com/en/es/groups/personalized/S/STAESES-XCW-20111027/index.jhtml?WT.mc_id=POG">
                         <img src="img/hi.jpg">
                     </a>
                     Embassy Suites Santa Ana<br>
                     <span>
-                        Irvine, CA<br>
-                        <a href="http://www.hilton.com">Click for reservation information</a><br><br>
+                        1325 East Dyer Road<br>
+                        Santa Ana, CA<br>
+                        <a href="http://embassysuites.hilton.com/en/es/groups/personalized/S/STAESES-XCW-20111027/index.jhtml?WT.mc_id=POG">Click for reservation information</a><br>
+                        <a href="http://embassysuites1.hilton.com/en_US/es/hotel/STAESES-Embassy-Suites-Santa-Ana-Orange-County-Airport-North-California/index.do">Click for hotel information</a><br><br>
                     </span>
-                    
+                    <!--
                     <a href="http://www.hilton.com">
                         <img src="img/rh.jpg">
                     </a>
@@ -43,6 +84,7 @@
                     <span>
                         ### nAme Ave<br>Newport Coast, CA<br><br>
                     </span>
+                     -->
                 </div>
             </div>
     </div>
