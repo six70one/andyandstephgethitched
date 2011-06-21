@@ -1,5 +1,21 @@
+<script type="text/javascript">
+    function WriteColDivTag(columnId) 
+    {
+        //var msg = "document width: " + document.width + " px.\n col is " + columnId;
+        if (document.width < 1080)
+        {
+            document.write("<div class=\"colleft\">");
+        }
+        else
+        {
+            document.write("<div class=\"col"+columnId+"\">");
+        }
+    }
+</script>
+
 <body>
 <p><p><p>
+    
     <div id="container">
         <div align="center" style="padding-bottom: 15px;"><img src="img/wgm.png"></div>
         <div id="example">
@@ -19,10 +35,12 @@
             <img src="img/frame.png" width="739" height="450" alt="Frame" id="frame">
         </div>
     </div>
+    
+    
     <br><br>
     <div class="colmask rightmenu">
         <div class="colleft">
-            <div class="col1">
+            <script type="text/javascript">WriteColDivTag(1);</script>
                 <div id="utxt">
                     <a href="/wherewhen">
                         <img src="img/rose.png">
@@ -31,7 +49,7 @@
                     All the Where's 'n When's</a>
                 </div>
             </div>
-            <div class="col2">
+            <script type="text/javascript">WriteColDivTag(2);</script>
                 <div id="utxt">
                     <a href="/stuff">
                         <img src="img/where.png">
@@ -39,7 +57,7 @@
                     <br>The other wedding-y stuff</a>
                 </div>
             </div>
-            <div class="col3"> 
+            <script type="text/javascript">WriteColDivTag(3);</script>
                 <div id="utxt">
                     <div class="slides">
                         <a href="/fun">

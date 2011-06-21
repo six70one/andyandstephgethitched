@@ -387,6 +387,7 @@ div.places a img {
   padding: 1px;
   border: 5px solid #000;
   margin-bottom: 10px;
+  color: #000
 }
 
 div.places span {
@@ -397,11 +398,15 @@ div.places span {
   }
 
 div.places a:hover{
-  color: #6699cc;
+  color: #369;
+}
+
+div.places a{
+  color: #99f;
 }
 
 div.places a:hover span{
-  color: #6699cc;
+  color: #369;
 }
 
 div.places a:hover img{

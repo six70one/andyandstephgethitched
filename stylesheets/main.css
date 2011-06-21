@@ -213,7 +213,7 @@ img {
 			position: absolute;
 			right: 0;
 			text-align: center;
-			top: 18%;
+			top: 8%;
 			vertical-align: middle;
 		}
 #innerwrapper {
@@ -391,18 +391,22 @@ div.places a img{
 }
 
 div.places span{
-  color: #c0c;
+  color: #000;
   font-weight: normal;
   font-size: 14px;
   margin-bottom: 10px;
   }
 
 div.places a:hover{
-  color: #6699cc;
+  color: #606;
 }
 
 div.places a:hover span{
-  color: #66699cc;
+  color: #606;
+}
+
+div.places a{
+  color: #99f;
 }
 
 div.places a:hover img{

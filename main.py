@@ -53,8 +53,17 @@ def writeSlidePlayerScript(self):
 </script>""")
 
 def writeJavascript(self):
-    weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
-    d = weddingdate.get().date.strftime("%A %m/%d/%Y")
+    try:
+        weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
+        d = weddingdate.get().date.strftime("%A %m/%d/%Y")
+    except AttributeError:
+        a=ImportantDates()
+        a.name='weddingday'
+        a.date=datetime.date(2011,10,28)
+        a.put()
+        weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
+        d = weddingdate.get().date.strftime("%A %m/%d/%Y")
+
     self.response.out.write("""<script type="text/javascript">
         $(document).ready(function() 
         {
@@ -180,10 +189,7 @@ class WherewhenHandler(webapp.RequestHandler):
         writeJQuery(self)
         writeSlidePlayerScript(self)
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
-        if isIE(self):
-            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
-        else:
-            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         writeNav(self)
@@ -200,10 +206,7 @@ class FunStuffHandler(webapp.RequestHandler):
         writeJQuery(self)
         writeSlidePlayerScript(self)
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
-        if isIE(self):
-            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
-        else:
-            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         writeNav(self)
@@ -220,10 +223,7 @@ class OtherStuffHandler(webapp.RequestHandler):
         writeJQuery(self)
         writeSlidePlayerScript(self)
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
-        if isIE(self):
-            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
-        else:
-            self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/bgimage.css" />""")
+        self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         writeNav(self)
