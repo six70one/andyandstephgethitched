@@ -251,6 +251,8 @@ class CreateHandler(webapp.RequestHandler):
         
 class RobotHandler(webapp.RequestHandler):
     def get(self):
+        self.response.out.write("""User-agent: Baiduspider<br>""")
+        self.response.out.write("""Disallow: /<br><br>""")
         self.response.out.write("""User-agent: *<br>""")
         self.response.out.write("""Disallow: """)
 
