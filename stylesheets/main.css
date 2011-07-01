@@ -11,7 +11,7 @@ body {
 	font-size:90%;
     text-align:center;
 }
-#answer {
+#answer, #over{
 			font-size: 120pt;
 			font-weight: bold;
 			color: #000;

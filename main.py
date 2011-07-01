@@ -150,7 +150,8 @@ class MainHandler(webapp.RequestHandler):
         weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
         
         if weddingdate.get().date < datetime.date.today():
-            self.response.out.write("<div id=answer>YUP!</div>")
+            self.response.out.write("""<div id=over>YUP!</div>""")
+            self.response.out.write("""<div id=utxt><a href="/details">find out how it went</a>...""")
         else:
             self.response.out.write("<div id=answer>nope, not yet</div><p>")
             self.response.out.write("""<div id="why" style="display:none"><a href="#">find out why</a>...""")
