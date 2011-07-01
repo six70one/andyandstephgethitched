@@ -68,6 +68,7 @@ def writeJavascript(self):
         $(document).ready(function() 
         {
             $("#why:hidden:first").fadeIn(6000);
+            $("#utxt:hidden:first").fadeIn(6000);
         });
         </script>""")
     self.response.out.write("""<script type="text/javascript">        
@@ -151,7 +152,7 @@ class MainHandler(webapp.RequestHandler):
         
         if weddingdate.get().date < datetime.date.today():
             self.response.out.write("""<div id=over>YUP!</div>""")
-            self.response.out.write("""<div id=utxt><a href="/details">find out how it went</a>...""")
+            self.response.out.write("""<div id=utxt style="display:none"><a href="/details">find out how it went</a>...""")
         else:
             self.response.out.write("<div id=answer>nope, not yet</div><p>")
             self.response.out.write("""<div id="why" style="display:none"><a href="#">find out why</a>...""")
