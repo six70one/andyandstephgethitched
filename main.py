@@ -82,7 +82,6 @@ def writeJavascript(self):
         });
         
         </script>"""  % (d))
-    
 
 
 
@@ -170,6 +169,7 @@ class DetailsHandler(webapp.RequestHandler):
         writeSlidePlayerScript(self)
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        self.response.out.write("""<link href='http://fonts.googleapis.com/css?family=Architects+Daughter&v2' rel='stylesheet' type='text/css'>""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         writeNav(self)
@@ -189,6 +189,7 @@ class WherewhenHandler(webapp.RequestHandler):
         writeSlidePlayerScript(self)
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        self.response.out.write("""<link href='http://fonts.googleapis.com/css?family=Architects+Daughter&v2' rel='stylesheet' type='text/css'>""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         writeNav(self)
@@ -206,6 +207,7 @@ class FunStuffHandler(webapp.RequestHandler):
         writeSlidePlayerScript(self)
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        self.response.out.write("""<link href='http://fonts.googleapis.com/css?family=Architects+Daughter&v2' rel='stylesheet' type='text/css'>""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         writeNav(self)
@@ -223,6 +225,7 @@ class OtherStuffHandler(webapp.RequestHandler):
         writeSlidePlayerScript(self)
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/nav.css" />""")
         self.response.out.write("""<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />""")
+        self.response.out.write("""<link href='http://fonts.googleapis.com/css?family=Architects+Daughter&v2' rel='stylesheet' type='text/css'>""")
         self.response.out.write("""<title>Seriously, are they married yet?</title>\r\n""")
         self.response.out.write("""</head>\r\n\r\n""");
         writeNav(self)

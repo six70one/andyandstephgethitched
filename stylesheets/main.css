@@ -1,6 +1,6 @@
 body {
-    font-family: "helvetica neue", sans-serif, arial;
-    font-size: 14pt;
+    font-family: "Architects Daughter","helvetica neue", sans-serif, arial;
+    font-size: 16pt;
     margin:0;
 	padding:0;
 	border:0;			/* This removes the border around the viewport in old versions of IE */
@@ -187,11 +187,11 @@ img {
 }
 /* 2 Column (right menu) settings */
 .rightmenu {
-	background:#fff  url(../img/background.png) repeat top center;		/* right column background colour */
+	background:#fff
 }
 .rightmenu .colleft {
 	left:0%;			/* right column width */
-	background:#fff url(../img/background.png) repeat top center;		/* left column background colour */
+	background:#fff
 }
 .rightmenu .col1 {
 	width:33%;			/* left column content width (left column width minus left and right padding) */
@@ -369,6 +369,44 @@ img {
 }
 
 /* end slider settings */
+div.detailscontainer{
+  margin: 0 auto 20px;
+  width: 1350px;
+  padding: 0;
+  text-align: center;
+}
+
+div.detailscollection {
+  padding: 0;
+  width: 100%;
+  padding-bottom: 50px;
+  float: left;
+  text-align: left;
+  position: relative;
+  }
+  
+div.detail{
+  display: block;
+  width: 430px;
+  height: 300px;
+  text-align: center;
+  float: left;
+  margin: 0 20px 10px 0;
+  text-decoration: none;
+  color: #573481;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 1.3em;
+}
+
+div.detail a:hover{
+  color: #99f;
+}
+
+div.detail a{
+  color: #573481;
+}
+
 div.placescontainer{
   margin: 0 auto 20px;
   width: 840px;
@@ -388,22 +426,24 @@ div.placescollection {
 
 div.places{
   display: block;
-  width: 250px;
-  height: 300px;
+  width: 260px;
+  height: 330px;
   text-align: left;
   float: left;
   margin: 0 20px 10px 0;
   text-decoration: none;
   color: #606;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.3em;
+  padding-bottom: 20px
 }
 
 div.addy{
   color:#888;
-  font-size:12px;
+  font-size:13px;
 }
+
 div.places a img{
   padding: 1px;
   border: 5px solid #000;
@@ -413,7 +453,7 @@ div.places a img{
 div.places span{
   color: #000;
   font-weight: normal;
-  font-size: 13px;
+  font-size: 16px;
   margin-bottom: 10px;
   }
 
