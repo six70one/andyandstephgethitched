@@ -1,10 +1,8 @@
-application: andyandstephgethitched
-version: 2
-runtime: python
+application: andyandstephgethitched-hrd
+version: 3
+runtime: python27
 api_version: 1
-
-builtins:
-- datastore_admin: on
+threadsafe: no
 
 handlers:
 - url: /stylesheets

@@ -5,10 +5,6 @@
 
 import datetime
 import os
-#os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-
-from google.appengine.dist import use_library
-use_library('django', '1.2')
 
 from datetime import date
 from datetime import timedelta
@@ -147,19 +143,13 @@ def writeNav(self):
 class MainHandler(webapp.RequestHandler):
     def get(self):
         writeHeader(self)
-        weddingdate = db.GqlQuery("SELECT * FROM ImportantDates where name='weddingday'")
-        
-        if weddingdate.get().date < datetime.date.today():
-            self.response.out.write("""<div id=over>YUP!</div>""")
-            self.response.out.write("""<div id=utxt style="display:none"><a href="https://picasaweb.google.com/101437282975785633366/CastnerArchinalWedding?authuser=0&authkey=Gv1sRgCMTpyo66i8W_MQ">find out how it went</a>...""")
-            self.response.out.write("""<br><br>
-                <object width="640" height="385"><param name="movie" value="https://video.google.com/get_player?docid=0B22r-VLfj-agQWI2YVlRVmhqQlk&ps=docs&partnerid=30&cc_load_policy=1"></param><param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param><embed src="https://video.google.com/get_player?docid=0B22r-VLfj-agQWI2YVlRVmhqQlk&ps=docs&partnerid=30&cc_load_policy=1" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="385"></embed>
-                </object>
-                </div>""")
-        else:
-            self.response.out.write("<div id=answer>nope, not yet</div><p>")
-            self.response.out.write("""<div id="why" style="display:none"><a href="#">find out why</a>...""")
-        
+        self.response.out.write("""<div id=over>YUP!</div>""")
+        self.response.out.write("""<div id=utxt style="display:none"><a href="https://picasaweb.google.com/101437282975785633366/CastnerArchinalWedding?authuser=0&authkey=Gv1sRgCMTpyo66i8W_MQ">find out how it went</a>...""")
+        self.response.out.write("""<br><br>
+            <object width="640" height="385"><param name="movie" value="https://video.google.com/get_player?docid=0B22r-VLfj-agQWI2YVlRVmhqQlk&ps=docs&partnerid=30&cc_load_policy=1"></param><param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param><embed src="https://video.google.com/get_player?docid=0B22r-VLfj-agQWI2YVlRVmhqQlk&ps=docs&partnerid=30&cc_load_policy=1" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="385"></embed>
+            </object>
+            </div>""")
+
         writeTracker(self)
 
         self.response.out.write("</body>")
@@ -264,10 +254,6 @@ class RobotHandler(webapp.RequestHandler):
 
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
-                                          ('/details',DetailsHandler),
-                                          ('/wherewhen',WherewhenHandler),
-                                          ('/fun',FunStuffHandler),
-                                          ('/stuff',OtherStuffHandler),
                                           ('/createstuff',CreateHandler),
                                           ('/useragent', UserAgentHandler),
                                           ('/robots.txt',RobotHandler)],
